@@ -1,0 +1,68 @@
+{% extends "bbase.html" %} 
+{% block content %}
+<script type="text/javascript" src="/media/js/jquery-1.7.min.js"></script>
+<!-- Post  -->
+<article>
+    <h1 class="title">{{ post.title }}</h1>
+    <h3 class="alt">published on: {{ post.created|date:"l, F d, Y"}}</h3>
+    <p>{{ post.body|linebreaks }}</p>
+</article>
+<!-- Comments  -->
+{% if comments %}
+<script type="text/javascript">
+$(function(){
+	$('a.delete_link').click(function(){
+		var obj = $(this).hide();
+		$('#delete_all_bt').hide();
+		obj.next('.indicator').show();
+		$.post(obj.attr('href'),{csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]:first').val()}, function(response){
+			if (response == 'ok'){
+				obj.closest('div.comment').hide('slow', function(){
+					$(this).remove();
+					if (!$('div.comment').length) {
+						$('#delete_all_bt').hide();
+					} else {
+						$('#delete_all_bt').show();
+					}
+				});
+			}
+		});
+		return false;
+	})
+});
+</script>
+<p id="comments">Comments:</p>
+{% endif %}
+<form action="{% url blog.views.delete_comment post.pk %}" id="delete_comment_form" method="POST">
+    {% csrf_token %} 
+    {% for comment in comments %}
+    <div class="comment">
+        <div class="time">{{ comment.created }} | {{ comment.author }}</div>
+        <div class="body">{{ comment.body|linebreaks }}</div>
+        {% if user.is_staff %} 
+        <input type="checkbox" name="delete" value="{{ comment.pk }}" />
+         <a class="delete_link" href="{% url blog.views.delete_comment post.pk comment.id %}">delete</a>
+         <img class="indicator" style="display: none" alt="...loading..." src="/media/img/indicator.gif" />
+        {% endif %}
+    </div>
+    {% endfor %} 
+    {% if user.is_staff and comments %}
+    <p>
+        <input type="submit" id="delete_all_bt" value="Delete all selected">
+    </p> <br /> 
+    {% endif %}
+</form>
+
+<div id="addc">Add a comment</div>
+<!-- Comment form  -->
+<form action="{% url blog.views.add_comment post.id %}" id="add_comment_form" method="POST">
+    {% csrf_token %}
+    <div id="cform">
+        Name: {{ form.author }}
+        <p>{{ form.body|linebreaks }}</p>
+    </div>
+    <div id="submit">
+        <input type="submit" value="Submit">
+    </div>
+</form>
+{% endblock %}

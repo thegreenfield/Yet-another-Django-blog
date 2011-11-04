@@ -1,0 +1,105 @@
+a {
+    text-decoration: none;
+}
+
+body {
+    font-size: 81%;
+}
+
+p.date {
+    font-size: 1.25em;
+    text-align: right;
+}
+
+header {
+    margin-top: 1em;
+}
+
+header h1 {
+    font-size: 1.25em;
+}
+
+footer p {
+    text-align: right;
+}
+
+nav.main {
+    float: right;
+}
+
+nav.main ul {
+    list-style: none outside none;
+    float: right;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+nav.main ul li {
+    display: inline;
+    margin-left: 2px;
+    padding: 0;
+}
+.article {
+    border-left: 1px solid #DDDDDD;
+    padding-left: 24px;
+    margin-left: 13px;
+    margin-bottom: 36px;
+}
+.main {
+    margin-left: 25px;
+    margin-top: 30px;
+}
+
+.time {
+    margin-top: 2px;
+    font-style: italic;
+}
+
+.title {
+    color: #111111;
+}
+
+.body {
+    font-size: 1.1em;
+    margin-top: 2px;
+}
+
+.commentlink {
+    text-align: right;
+}
+
+.step-links a {
+    font-size: 0.89em;
+}
+
+.pagination {
+    text-align: center;
+}
+
+#addc {
+    width: 508px;
+    background: #f5f5f5;
+    padding: 3px;
+    padding-bottom: 8px;
+    border-bottom: 1px dotted #aaa;
+}
+
+#cform {
+    background: #f5f5f5;
+    width: 506px;
+    padding: 4px;
+    padding-bottom: 0px;
+}
+
+#submit {
+    text-align: right;
+    margin-right: 50px;
+    width: 500px;
+    margin-top: -5px;
+}
+
+.comment {
+    border: 1px solid #eee;
+    padding: 4px;
+    margin-bottom: 12px;
+}

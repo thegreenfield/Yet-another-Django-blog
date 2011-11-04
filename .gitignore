@@ -1,0 +1,11 @@
+bin
+build
+include
+lib
+local
+.Python
+*.pyc
+*.swp
+myblog/data.db
+.project
+.pydevproject
