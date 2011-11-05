@@ -6,6 +6,6 @@ local
 .Python
 *.pyc
 *.swp
-myblog/data.db
+data.db
 .project
 .pydevproject

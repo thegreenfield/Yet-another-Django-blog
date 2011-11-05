@@ -33,7 +33,7 @@ def delete_comment(request, post_pk, pk=None):
         
         if request.is_ajax():
             return HttpResponse('ok');
-        return HttpResponseRedirect(reverse("myblog.blog.views.post", args=[post_pk]))
+        return HttpResponseRedirect(reverse("blog.views.post", args=[post_pk]))
 
 def add_comment(request, pk):
     """Add a new comment."""
@@ -52,7 +52,7 @@ def add_comment(request, pk):
         # save comment instance
         comment.author = author
         comment.save()
-    return HttpResponseRedirect(reverse("myblog.blog.views.post", args=[pk]))
+    return HttpResponseRedirect(reverse("blog.views.post", args=[pk]))
 
 
 def main(request):
